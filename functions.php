@@ -24,11 +24,11 @@ function deleteTodos($todos, $index){
 
 function editTodos($todos, $params){
 
-    $index = $params['index'];
+    $index = $params['edit'];
 
-    $todos[$index]['text'] = array(
-        'text' => $params['text'],
-        'done' => false
+    $todos[$index] = array(
+        'text' => $todos[$index]['text'],
+        'done' => $todos[$index]['done'] == true ? false : true,
     );
 
 

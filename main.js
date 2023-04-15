@@ -43,6 +43,20 @@ createApp({
             .then((result)=> {
                 this.todos = result.data;
             });
+        },
+        editTodo(index){
+            console.log('editTodo');
+            const payload = {
+                edit: index,
+            };
+            const headers = {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+            };
+            axios.post(this.apiUrl, payload, {headers})
+            .then((result)=>{
+                this.todos = result.data;
+            });
         }
     },
     created(){

@@ -29,7 +29,7 @@
             </form>
             <ul class="list-unstyled py-5">
                 <li v-for="(todo, index) in todos" class="d-flex justify-content-between p-3 bg-body-tertiary rounded-4 mb-3">
-                    <h3>{{ todo.text }}</h3>
+                    <h3 :class="todo.done ? 'text-bg-danger' : 'text-bg-success'" @click="editTodo(index)">{{ todo.text }}</h3>
                     <button type="button" class="btn btn-info" @click="deleteTodo(index)">
                         <i class="fa-solid fa-trash"></i>
                     </button>
