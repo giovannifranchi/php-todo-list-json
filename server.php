@@ -16,7 +16,7 @@ if(isset($_POST['action'])){
 
         header('Content-type: application/json');
         unset($user['password']);
-        $reult = json_encode($user);
+        $result = json_encode($user);
         echo $result;
         return;
     }

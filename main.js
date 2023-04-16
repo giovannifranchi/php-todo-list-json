@@ -3,6 +3,9 @@ const { createApp } = Vue;
 createApp({
     data(){
         return {
+            user: null,
+            password: null,
+            currentUser: null,
             apiUrl: 'server.php',
             newTodo: '',
             todos: [],
@@ -10,11 +13,36 @@ createApp({
         }
     },
     methods:{
+        login(){
+            const payload = {
+                action: 'login',
+                username: this.user,
+                password: this.password,
+            };
+            const headers = {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+            };
+            axios.post(this.apiUrl, payload, {headers})
+            .then((result)=> {
+                console.log(result);
+                this.user = null;
+                this.password = null;
+                if(result.data.username){
+                    this.currentUser = result.data;
+                    //call todos;
+                }else {
+                    alert('utente non trovato');
+                }
+            })
+        },
+
         getTodos(){
             axios.get(this.apiUrl).then((result) =>{
                 this.todos = result.data;
             });
         },
+
         addTodo(){
             console.log('addTodo');
             const payload = {
@@ -30,6 +58,7 @@ createApp({
                 this.newTodo = '';
             });
         },
+
         deleteTodo(index){
             console.log('deleteTodo');
             const payload = {
@@ -44,6 +73,7 @@ createApp({
                 this.todos = result.data;
             });
         },
+
         editTodo(index){
             console.log('editTodo');
             const payload = {
@@ -58,8 +88,5 @@ createApp({
                 this.todos = result.data;
             });
         }
-    },
-    created(){
-        this.getTodos();
     }
 }).mount('#app');
