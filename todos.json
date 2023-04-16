@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "todoList": [
+            {
+                "text": "PHP",
+                "done": true
+            },
+            {
+                "text":"JavaScript",
+                "done": false
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "todoList": [
+            {
+                "text": "HTML",
+                "done": false
+            },
+            {
+                "text": "Laravel",
+                "done": false
+            }
+        ]
+    }
+]
